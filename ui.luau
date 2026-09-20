@@ -1357,9 +1357,7 @@ end)
 			Parent = SideBar    
 		})
 
-		if int == 9 then
-			Button.Visible = false
-		end
+		Button.Visible = true
 
 		local _Tab = newObject("Frame", {
 			BackgroundColor3 = colorfromrgb(255, 255, 255);
@@ -1663,6 +1661,15 @@ end)
 		for _int = 1, 9 do
 			local tab = tabs[_int]
 			if not tab then continue end -- // no better way to do it!! frick
+			tab.button.Visible = true
+			tab.frame.Visible = true
+			if tab.subtabs then
+				for _, subtab in pairs(tab.subtabs) do
+					if subtab and subtab.frame then
+						subtab.frame.Visible = true
+					end
+				end
+			end
 			local is_active_tab = int == _int
 			tween(tab.icon, newtweeninfo(0, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {ImageColor3 = is_active_tab and colorfromrgb(255,255,255) or colorfromrgb(109, 109, 109)})
 			tab.bottom_bar.Visible = is_active_tab
